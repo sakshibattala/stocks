@@ -20,7 +20,7 @@ function App() {
 
     try {
       const res = await fetch(
-        `${import.meta.env.REACT_APP_BASE_URL}/stock/${symbol}`,
+        `${import.meta.env.VITE_BASE_URL}/stock/${symbol}`,
       );
       const json = await res.json();
 
@@ -41,7 +41,7 @@ function App() {
     for (let symbol of companies) {
       try {
         const res = await fetch(
-          `${import.meta.env.REACT_APP_BASE_URL}/stock/${symbol}`,
+          `${import.meta.env.VITE_BASE_URL}/stock/${symbol}`,
         );
         const json = await res.json();
         updatedData[symbol] = json;
