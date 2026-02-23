@@ -19,7 +19,9 @@ function App() {
     }
 
     try {
-      const res = await fetch(`http://localhost:5000/stock/${symbol}`);
+      const res = await fetch(
+        `${import.meta.env.REACT_APP_BASE_URL}/stock/${symbol}`,
+      );
       const json = await res.json();
 
       if (!json.symbol) {
@@ -38,7 +40,9 @@ function App() {
 
     for (let symbol of companies) {
       try {
-        const res = await fetch(`http://localhost:5000/stock/${symbol}`);
+        const res = await fetch(
+          `${import.meta.env.REACT_APP_BASE_URL}/stock/${symbol}`,
+        );
         const json = await res.json();
         updatedData[symbol] = json;
       } catch (err) {
@@ -52,8 +56,8 @@ function App() {
 
   useEffect(() => {
     fetchAllStocks();
-    // const interval = setInterval(fetchAllStocks, 5000);
-    // return () => clearInterval(interval);
+    const interval = setInterval(fetchAllStocks, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
